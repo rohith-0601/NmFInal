@@ -189,10 +189,10 @@ const Polynomial = () => {
               )}
             </PrettyPre>
 
-            <h6 className="text-muted small mt-3">Polynomial (one-line)</h6>
-            <PrettyPre>
+            {/* <h6 className="text-muted small mt-3">Polynomial (one-line)</h6> */}
+            {/* <PrettyPre>
               {formatPolynomial(resp.P_shifted_str ?? resp.polynomial)}
-            </PrettyPre>
+            </PrettyPre> */}
 
             <h6 className="text-muted small mt-3">
               Coefficients (highest → lowest)
