@@ -92,7 +92,7 @@ const Harshad = () => {
               <input
                 type="number"
                 className="form-control"
-                placeholder="Enter start number"
+                placeholder="Enter start n"
                 value={q1Start}
                 onChange={(e) => setQ1Start(e.target.value)}
                 required
@@ -102,7 +102,7 @@ const Harshad = () => {
               <input
                 type="number"
                 className="form-control"
-                placeholder="Enter end number"
+                placeholder="Enter end n"
                 value={q1End}
                 onChange={(e) => setQ1End(e.target.value)}
                 required
@@ -124,34 +124,47 @@ const Harshad = () => {
               style={{ width: "3rem", height: "3rem" }}
             ></div>
             <p className="mt-2 text-secondary fw-semibold">
-              Processing... Please wait
+              Processing factorials... Please wait
             </p>
           </div>
         )}
 
+        {/* Result Display */}
         {q1Result && !q1Loading && (
           <div className="mt-4 bg-light p-3 rounded">
             {q1Result.status === "non-harshad-found" ? (
               <>
-                <h5 className="text-success fw-semibold">
-                  ❌ First Non-Harshad Number: {q1Result.number}
+                <h5 className="text-danger fw-semibold">
+                  ❌ Non-Harshad Factorials Found
                 </h5>
-                <p>
-                  <strong>Digit Sum:</strong> {q1Result.digit_sum} <br />
-                  <strong>Remainder:</strong> {q1Result.remainder}
-                </p>
-                <p>
-                  <strong>Factorial:</strong> <br />
-                  <span
-                    style={{
-                      wordBreak: "break-all",
-                      color: "#333",
-                      fontSize: "0.9rem",
-                    }}
-                  >
-                    {q1Result.factorial}
-                  </span>
-                </p>
+                <table className="table table-bordered mt-3">
+                  <thead className="table-dark">
+                    <tr>
+                      <th>n</th>
+                      <th>Digit Sum</th>
+                      <th>Remainder</th>
+                      <th>Factorial (n!)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {q1Result.results.map((item, idx) => (
+                      <tr key={idx}>
+                        <td>{item.n}</td>
+                        <td>{item.digit_sum}</td>
+                        <td>{item.remainder}</td>
+                        <td
+                          style={{
+                            wordBreak: "break-all",
+                            fontSize: "0.9rem",
+                            color: "#333",
+                          }}
+                        >
+                          {item.factorial}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </>
             ) : (
               <p className="text-info">{q1Result.message}</p>
